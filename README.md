@@ -1,16 +1,22 @@
 # Modelo de aprendizado de máquina
 
--> Tema: Otimização de Rotas para Entregas: Aplicar aprendizado de máquina para otimizar
-rotas de entrega, considerando variáveis como tráfego, condições meteorológicas e
-restrições específicas.
+-> Tema: Processamento de Linguagem Natural para Análise de Sentimentos em Redes 
+Sociais: Criar um modelo de aprendizado de máquina para analisar sentimentos em
+mensagens de redes sociais, contribuindo para a compreensão da opinião pública
+sobre determinados tópicos.
 
 ## Base de dados e temas
 
--> Rotas Vizinhas Dinamicas - https://www.kaggle.com/datasets/wiltoncosta7/pesquisa-por-rotas-vizinhas-dinamicas
+Reference Project -> https://thecleverprogrammer.com/2020/05/25/movie-reviews-sentiment-analysis-binary-classification-with-machine-learning/#comments
 
--> Airplane Crashes - https://www.kaggle.com/datasets/saurograndi/airplane-crashes-since-1908
+Others Projects 
+ - Twitter Analisis -> https://thecleverprogrammer.com/2020/06/13/twitter-sentiment-analysis/
+ - Amazom Products Analisis -> https://thecleverprogrammer.com/2020/05/15/amazon-product-reviews-sentiment-analysis-with-machine-learning/
 
--> Road transport dataset in brazil - https://www.kaggle.com/datasets/gomes555/road-transport-brazil?select=road-transport-brazil.csv
+scikit Learn Supervisioned -> https://scikit-learn.org/stable/supervised_learning.html
+ - Bernoulli -> https://scikit-learn.org/stable/modules/naive_bayes.html
+scikit Learn Unsupervisioned -> https://scikit-learn.org/stable/unsupervised_learning.html
+ - ...
 
 ## Como fazer
 
