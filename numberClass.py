@@ -1,5 +1,6 @@
-import numpy as np # linear algebra
+import numpy as np
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+from scipy.ndimage import convolve
 import re # for regex
 import nltk
 nltk.download('punkt')
@@ -10,7 +11,11 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB,MultinomialNB,BernoulliNB
 from sklearn.metrics import accuracy_score
-import pickle
+
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import minmax_scale
+
 
 # Carregando o dataset para treinamento
 data = pd.read_csv('IMDB-Dataset.csv')
@@ -74,19 +79,22 @@ X = cv.fit_transform(data.review).toarray()
 print("X.shape = ",X.shape)
 print("y.shape = ",y.shape)
 
-trainx,testx,trainy,testy = train_test_split(X,y,test_size=0.2,random_state=9)
-print("Train shapes : X = {}, y = {}".format(trainx.shape,trainy.shape))
-print("Test shapes : X = {}, y = {}".format(testx.shape,testy.shape))
+X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+print("Train shapes : X = {}, y = {}".format(X_train.shape,Y_train.shape))
+print("Test shapes : X = {}, y = {}".format(X_test.shape,Y_test.shape))
 
-gnb,mnb,bnb = GaussianNB(),MultinomialNB(alpha=1.0,fit_prior=True),BernoulliNB(alpha=1.0,fit_prior=True)
-gnb.fit(trainx,trainy)
-mnb.fit(trainx,trainy)
-bnb.fit(trainx,trainy)
+from sklearn import linear_model
+from sklearn.neural_network import BernoulliRBM
+from sklearn.pipeline import Pipeline
 
-ypg = gnb.predict(testx)
-ypm = mnb.predict(testx)
-ypb = bnb.predict(testx)
+logistic = linear_model.LogisticRegression(solver="newton-cg", tol=1)
+rbm = BernoulliRBM(random_state=0, verbose=True)
 
-print("Gaussian = ",accuracy_score(testy,ypg))
-print("Multinomial = ",accuracy_score(testy,ypm))
-print("Bernoulli = ",accuracy_score(testy,ypb))
+rbm_features_classifier = Pipeline(steps=[("rbm", rbm), ("logistic", logistic)])
+
+# Training RBM-Logistic Pipeline
+rbm_features_classifier.fit(X_train, Y_train)
+
+seila = rbm_features_classifier.predict(X_test)
+
+print("Sei la: ", accuracy_score(Y_test, seila))

@@ -15,8 +15,12 @@ Others Projects
 
 scikit Learn Supervisioned -> https://scikit-learn.org/stable/supervised_learning.html
  - Bernoulli -> https://scikit-learn.org/stable/modules/naive_bayes.html
+    - movieAnalisis.py
+ - Nearest Neighbors -> https://scikit-learn.org/stable/modules/neighbors.html
+    - vizinhokk.py
 scikit Learn Unsupervisioned -> https://scikit-learn.org/stable/unsupervised_learning.html
- - ...
+ - Restricted Boltzmann machines -> https://scikit-learn.org/stable/modules/neural_networks_unsupervised.html#restricted-boltzmann-machines
+    - numberClass.py
 
 ## Como fazer
 

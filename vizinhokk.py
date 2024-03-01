@@ -1,3 +1,5 @@
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
 import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 import re # for regex
@@ -11,6 +13,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB,MultinomialNB,BernoulliNB
 from sklearn.metrics import accuracy_score
 import pickle
+
+
 
 # Carregando o dataset para treinamento
 data = pd.read_csv('IMDB-Dataset.csv')
@@ -74,19 +78,26 @@ X = cv.fit_transform(data.review).toarray()
 print("X.shape = ",X.shape)
 print("y.shape = ",y.shape)
 
-trainx,testx,trainy,testy = train_test_split(X,y,test_size=0.2,random_state=9)
-print("Train shapes : X = {}, y = {}".format(trainx.shape,trainy.shape))
-print("Test shapes : X = {}, y = {}".format(testx.shape,testy.shape))
 
-gnb,mnb,bnb = GaussianNB(),MultinomialNB(alpha=1.0,fit_prior=True),BernoulliNB(alpha=1.0,fit_prior=True)
-gnb.fit(trainx,trainy)
-mnb.fit(trainx,trainy)
-bnb.fit(trainx,trainy)
+X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, random_state=0)
+print("Train shapes : X = {}, y = {}".format(X_train.shape,y_train.shape))
+print("Test shapes : X = {}, y = {}".format(X_test.shape,y_test.shape))
 
-ypg = gnb.predict(testx)
-ypm = mnb.predict(testx)
-ypb = bnb.predict(testx)
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
 
-print("Gaussian = ",accuracy_score(testy,ypg))
-print("Multinomial = ",accuracy_score(testy,ypm))
-print("Bernoulli = ",accuracy_score(testy,ypb))
+clf = Pipeline(
+    steps=[("scaler", StandardScaler()), ("knn", KNeighborsClassifier(n_neighbors=11))]
+)
+
+import matplotlib.pyplot as plt
+
+from sklearn.inspection import DecisionBoundaryDisplay
+
+_, axs = plt.subplots(ncols=2, figsize=(12, 5))
+
+
+clf.fit(X_train, y_train)
+score = clf.predict(X_test)
+print("Test set accuracy: ", accuracy_score(y_test, score))
