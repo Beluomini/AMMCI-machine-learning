@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
-from scipy.ndimage import convolve
 import re # for regex
 import nltk
 nltk.download('punkt')
@@ -9,12 +8,11 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import SnowballStemmer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
-from sklearn.naive_bayes import GaussianNB,MultinomialNB,BernoulliNB
 from sklearn.metrics import accuracy_score
-
-from sklearn import datasets
+from sklearn import linear_model
+from sklearn.neural_network import BernoulliRBM
+from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import minmax_scale
 
 
 # Carregando o dataset para treinamento
@@ -82,10 +80,6 @@ print("y.shape = ",y.shape)
 X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 print("Train shapes : X = {}, y = {}".format(X_train.shape,Y_train.shape))
 print("Test shapes : X = {}, y = {}".format(X_test.shape,Y_test.shape))
-
-from sklearn import linear_model
-from sklearn.neural_network import BernoulliRBM
-from sklearn.pipeline import Pipeline
 
 logistic = linear_model.LogisticRegression(solver="newton-cg", tol=1)
 rbm = BernoulliRBM(random_state=0, verbose=True)

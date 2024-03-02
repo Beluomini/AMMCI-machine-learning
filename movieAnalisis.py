@@ -10,7 +10,6 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB,MultinomialNB,BernoulliNB
 from sklearn.metrics import accuracy_score
-import pickle
 
 # Carregando o dataset para treinamento
 data = pd.read_csv('IMDB-Dataset.csv')
