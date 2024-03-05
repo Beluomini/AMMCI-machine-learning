@@ -78,4 +78,4 @@ rbm_features_classifier.fit(train_x, train_y)
 
 seila = rbm_features_classifier.predict(test_x)
 
-print("Sei la: ", accuracy_score(test_y, seila))
+print("Score: ", accuracy_score(test_y, seila))
