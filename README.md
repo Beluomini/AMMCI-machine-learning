@@ -24,13 +24,13 @@ Others Projects
  - Amazom Products Analisis -> https://thecleverprogrammer.com/2020/05/15/amazon-product-reviews-sentiment-analysis-with-machine-learning/
 
 scikit Learn Supervisioned -> https://scikit-learn.org/stable/supervised_learning.html
- - Bernoulli -> https://scikit-learn.org/stable/modules/naive_bayes.html
-    - movieAnalisis.py
+ - Naive Bayes -> https://scikit-learn.org/stable/modules/naive_bayes.html
+    - NaiveBayes.py
  - Nearest Neighbors -> https://scikit-learn.org/stable/modules/neighbors.html
-    - vizinhokk.py
+    - knn.py
 scikit Learn Unsupervisioned -> https://scikit-learn.org/stable/unsupervised_learning.html
  - Restricted Boltzmann machines -> https://scikit-learn.org/stable/modules/neural_networks_unsupervised.html#restricted-boltzmann-machines
-    - numberClass.py
+    - BernoulliRBM.py
 
 ## Como fazer
 
